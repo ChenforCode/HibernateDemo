@@ -58,6 +58,7 @@ public class StudentTest {
     public void testSaveStudent(){
         StudentEntity studentEntity = new StudentEntity(1, "刘琛", "男", new Date(), "河南");
         session.save(studentEntity);
+        System.out.println("今天改不完了，明天再改把！");
     }
 
 }

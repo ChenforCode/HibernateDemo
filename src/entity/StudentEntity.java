@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.Objects;
 
 @Entity
-@Table(name = "student", schema = "hibernate", catalog = "")
+@Table(name = "student", schema = "hibernate")
 public class StudentEntity {
     private int sid;
     private String sname;

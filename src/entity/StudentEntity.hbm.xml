@@ -7,18 +7,22 @@
     <class name="entity.StudentEntity" table="student" schema="hibernate">
         <id name="sid">
             <column name="sid" sql-type="int(11)"/>
+            <generator class="native"></generator>
         </id>
         <property name="sname">
-            <column name="sname" sql-type="varchar(20)" length="20"/>
+            <column name="sname" sql-type="varchar(20)" length="20" not-null="true"/>
         </property>
         <property name="gender">
-            <column name="gender" sql-type="varchar(20)" length="20"/>
+            <column name="gender" sql-type="varchar(20)" length="20" not-null="true"/>
         </property>
         <property name="birthday">
-            <column name="birthday" sql-type="date" not-null="true"/>
+            <column name="birthday" sql-type="date"/>
         </property>
         <property name="address">
-            <column name="address" sql-type="varchar(20)" length="20" not-null="true"/>
+            <column name="address" sql-type="varchar(20)" length="20"/>
+        </property>
+        <property name="picture">
+            <column name="picture" sql-type="longblob" not-null="false"/>
         </property>
     </class>
 </hibernate-mapping>

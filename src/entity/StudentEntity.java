@@ -1,28 +1,20 @@
 package entity;
 
 import javax.persistence.*;
+import java.sql.Blob;
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.Objects;
 
 @Entity
-@Table(name = "student", schema = "hibernate")
+@Table(name = "student", schema = "hibernate", catalog = "")
 public class StudentEntity {
     private int sid;
     private String sname;
     private String gender;
     private Date birthday;
     private String address;
-
-    public StudentEntity(int sid, String sname, String gender, Date birthday, String address) {
-        this.sid = sid;
-        this.sname = sname;
-        this.gender = gender;
-        this.birthday = birthday;
-        this.address = address;
-    }
-
-    public StudentEntity() {
-    }
+    private Blob picture;
 
     @Id
     @Column(name = "sid", nullable = false)
@@ -35,7 +27,7 @@ public class StudentEntity {
     }
 
     @Basic
-    @Column(name = "sname", nullable = false, length = 20)
+    @Column(name = "sname", nullable = true, length = 20)
     public String getSname() {
         return sname;
     }
@@ -45,7 +37,7 @@ public class StudentEntity {
     }
 
     @Basic
-    @Column(name = "gender", nullable = false, length = 20)
+    @Column(name = "gender", nullable = true, length = 20)
     public String getGender() {
         return gender;
     }
@@ -55,7 +47,7 @@ public class StudentEntity {
     }
 
     @Basic
-    @Column(name = "birthday", nullable = true)
+    @Column(name = "birthday", nullable = false)
     public Date getBirthday() {
         return birthday;
     }
@@ -65,13 +57,23 @@ public class StudentEntity {
     }
 
     @Basic
-    @Column(name = "address", nullable = true, length = 20)
+    @Column(name = "address", nullable = false, length = 20)
     public String getAddress() {
         return address;
     }
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    @Basic
+    @Column(name = "picture", nullable = true)
+    public Blob getPicture() {
+        return picture;
+    }
+
+    public void setPicture(Blob picture) {
+        this.picture = picture;
     }
 
     @Override
@@ -83,12 +85,48 @@ public class StudentEntity {
                 Objects.equals(sname, that.sname) &&
                 Objects.equals(gender, that.gender) &&
                 Objects.equals(birthday, that.birthday) &&
-                Objects.equals(address, that.address);
+                Objects.equals(address, that.address) &&
+                Objects.equals(picture, that.picture);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(sid, sname, gender, birthday, address);
+        return Objects.hash(sid, sname, gender, birthday, address, picture);
+    }
+
+
+    //带参数的构造方法
+    public StudentEntity(int sid, String sname, String gender, Date birthday, String address, Blob picture) {
+        this.sid = sid;
+        this.sname = sname;
+        this.gender = gender;
+        this.birthday = birthday;
+        this.address = address;
+        this.picture = picture;
+    }
+
+    //无参构造方法
+    public StudentEntity() {
+    }
+
+    public StudentEntity(int sid, String sname, String gender, Date birthday, String address) {
+        this.sid = sid;
+        this.sname = sname;
+        this.gender = gender;
+        this.birthday = birthday;
+        this.address = address;
+    }
+
+    @Override
+    public String toString() {
+        return "StudentEntity{" +
+                "sid=" + sid +
+                ", sname='" + sname + '\'' +
+                ", gender='" + gender + '\'' +
+                ", birthday=" + birthday +
+                ", address='" + address + '\'' +
+                ", picture=" + picture +
+                '}';
     }
 }

@@ -9,11 +9,15 @@
         <property name="connection.username">root</property>
         <property name="connection.password"></property>
 
+        <!--这个地方注意，一定要写MySQL5的方言，否则会出现语法错误
+            具体与MySQL的版本有关，如果是8.x版本应该要做相应的改动
+        -->
         <property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
 
         <property name="show_sql">true</property>
         <property name="format_sql">true</property>
-        <property name="hbm2ddl.auto">create</property>
+        <property name="hbm2ddl.auto">update</property>
+        <property name="hibernate.current_session_context_class">thread</property>
         <mapping resource="entity/StudentEntity.hbm.xml"/>
         <mapping class="entity.StudentEntity"/>
     </session-factory>
